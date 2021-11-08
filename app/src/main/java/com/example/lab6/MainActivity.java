@@ -21,7 +21,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MainActivity extends FragmentActivity {
 
-    private final LatLng mDestinationLatLng = new LatLng(43.0758318, -89.4052858);
+    private final LatLng mDestinationLatLng = new LatLng(43.0758, -89.4044);
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 12;
@@ -38,7 +38,7 @@ public class MainActivity extends FragmentActivity {
             mMap = googleMap;
             googleMap.addMarker(new MarkerOptions()
                     .position(mDestinationLatLng)
-                    .title("Destination"));
+                    .title("Bascom Hill"));
             displayMyLocation();
         });
     }
@@ -57,6 +57,9 @@ public class MainActivity extends FragmentActivity {
                     .addOnCompleteListener(this, task -> {
                         Location mLastKnownLocation = task.getResult();
                         if(task.isSuccessful() && mLastKnownLocation != null) {
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()))
+                                    .title("You are here"));
                             mMap.addPolyline(new PolylineOptions().add(
                                     new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()),
                                             mDestinationLatLng));
