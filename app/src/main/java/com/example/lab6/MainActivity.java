@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final LatLng mDestinationLatLng = new LatLng(-33.8523341, 151.2106085);
+    private final LatLng mDestinationLatLng = new LatLng(43.0758318,-89.4052858);
     private GoogleMap mMap;
 
     @Override
